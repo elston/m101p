@@ -37,10 +37,13 @@ services:
 
   mongoshell:
     image: ${PROJECT}_storage
+    tty: true    
     networks:
       - netmain
     depends_on:
       - storage      
+    volumes:      
+      - ../../data:/mongoshell_data
     # ................      
     command: /bin/bash
 
@@ -48,10 +51,19 @@ services:
   # =========================================
   weber:
     image: ${PROJECT}_weber
+    tty: true    
+    expose:
+      - "8000"    
+    ports:
+      - "8000:8000"
     networks:
       - netmain
     depends_on:
       - storage
+    environment:
+      - PROJECT=weber
+      - WORKON_HOME=/weber/.env
+      - PYTHONPATH=/weber      
     volumes:
       - ../../images/weber/src:/weber
       - ../../images/weber/runserv.sh:/usr/local/bin/runserv.sh

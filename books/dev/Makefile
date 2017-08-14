@@ -49,16 +49,28 @@ pull_all:
 # target: build_storage - build storage image
 .PHONY: build_storage
 build_storage:
+	@echo "---> build storage"
 	@docker-compose \
 		-p $(PROJECT) \
 		-f build.yml \
 		build storage
 
 
+# target: build_weber - build weber image
+.PHONY: build_weber
+build_weber:
+	@echo "---> build weber"	
+	@docker-compose \
+		-p $(PROJECT) \
+		-f build.yml \
+		build \
+		weber
+
 # target: build_all - build all images
 .PHONY: build_all
 build_all:
 	@make build_storage
+	@make build_weber	
 
 
 # target:
@@ -114,6 +126,7 @@ shell_weber:
 		-f run.yml \
 		run \
 		--rm \
+		--service-ports \
 		--name $(PROJECT)_weber_1 \
 		weber
 

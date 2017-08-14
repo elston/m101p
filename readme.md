@@ -6,8 +6,8 @@ Docker environment for course of https://university.mongodb.com/courses/M101P/ab
 Technology
 ----------------
 - docker
-- python
-- mongodb
+- python 3.6
+- mongodb 3.5
 
 
 Getting Started with Docker and Docker Compose for Local Development
@@ -50,3 +50,23 @@ Connect to mongo contaner
 ```
 docker exec -it m101p_storage_1 /bin/sh
 ```
+
+Mongo restore dump
+--------------------------------------------------------------------
+
+```
+mongorestore --host storage -u adminmaster -p passmaster dump
+```
+
+
+HW1-3
+--------------------------------------------------------------------
+
+answer 1815
+
+HW1-3
+--------------------------------------------------------------------
+
+question http://localhost:8080/hw1/50
+
+answer 53
