@@ -1,7 +1,7 @@
 M101P
 ========================
 
-Docker environ for course of https://university.mongodb.com/
+Docker environment for course of https://university.mongodb.com/courses/M101P/about
 
 Technology
 ----------------
