@@ -1,0 +1,44 @@
+version: '3'
+
+# ..volumes
+# ------------------
+volumes:
+  storage_data:
+
+# ..services
+# ------------------
+services:
+
+  # db
+  # ========================================= 
+  # ...
+  storage:
+    image: ${PROJECT}_storage
+    network_mode: "host" 
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_ADMIN_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_ADMIN_PASSWORD}
+    volumes:
+      - storage_data:/data/db
+      - ../../images/storage/mongod.conf:/etc/mongod.conf      
+      # - ../../images/storage/bootstrap.dev.js:/docker-entrypoint-initdb.d/bootstrap.js
+    command:
+      - -f
+      - /etc/mongod.conf
+
+
+  # app
+  # =========================================
+  # ...
+  weber:
+    image: ${PROJECT}_weber
+    network_mode: "host" 
+    environment:
+      - PROJECT=weber
+      - WORKON_HOME=/weber/.env
+    volumes:
+      - ../../images/weber/src:/weber
+      - ../../images/weber/bootstrap.sh:/usr/local/bin/bootstrap.sh
+      - ../../images/weber/requirements/dev.txt:/tmp/requirements.txt
+    # ..................................      
+    command: /usr/local/bin/bootstrap.sh    

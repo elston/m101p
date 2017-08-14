@@ -1,0 +1,9 @@
+*.pyc
+*.pid
+*.pem
+
+.env
+.logs
+__pycache__
+
+

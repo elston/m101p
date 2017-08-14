@@ -1,0 +1,59 @@
+version: '3'
+
+# ..networks
+# ------------------
+networks:
+  netmain:
+    driver: bridge
+
+# ..volumes
+# ------------------
+volumes:
+  storage_data:
+
+# ..services
+# ------------------   
+services:
+
+  # db
+  # ========================================= 
+  # ...
+  storage:
+    image: ${PROJECT}_storage
+    expose:
+      - "27017"
+    ports:
+      - "27017:27017"
+    networks:
+      - netmain
+    command:
+      - --auth
+      - --bind_ip_all
+      - -f
+      - /etc/mongod.conf
+    volumes:
+      - storage_data:/data/db
+      - ../../images/storage/mongod.conf:/etc/mongod.conf
+
+  mongoshell:
+    image: ${PROJECT}_storage
+    networks:
+      - netmain
+    depends_on:
+      - storage      
+    # ................      
+    command: /bin/bash
+
+  # app
+  # =========================================
+  weber:
+    image: ${PROJECT}_weber
+    networks:
+      - netmain
+    depends_on:
+      - storage
+    volumes:
+      - ../../images/weber/src:/weber
+      - ../../images/weber/runserv.sh:/usr/local/bin/runserv.sh
+    # ................
+    command: /bin/bash
