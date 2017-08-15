@@ -59,7 +59,7 @@ mongorestore --host storage -u adminmaster -p passmaster dump
 ```
 
 
-HW1-3
+HW1-2
 --------------------------------------------------------------------
 
 answer 1815

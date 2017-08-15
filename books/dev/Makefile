@@ -79,6 +79,7 @@ build_all:
 # target: bootstrap_storage - bootstrap storage contaner
 .PHONY: bootstrap_storage
 bootstrap_storage:
+	@echo "---> bootstrap storage"
 	@docker-compose \
 		-p $(PROJECT) \
 		-f bootstrap.yml \
@@ -90,6 +91,7 @@ bootstrap_storage:
 # target: bootstrap_weber - bootstrap weber contaner
 .PHONY: bootstrap_weber
 bootstrap_weber:
+	@echo "---> bootstrap weber"	
 	@docker-compose \
 		-p $(PROJECT) \
 		-f bootstrap.yml \
@@ -102,6 +104,7 @@ bootstrap_weber:
 .PHONY: bootstrap_all
 bootstrap_all:
 	@make bootstrap_storage
+	@make bootstrap_weber
 
 # target:
 # target: ===== shell ======= - ============================
