@@ -57,7 +57,10 @@ Mongo restore dump
 ```
 mongorestore --host storage -u adminmaster -p passmaster dump
 ```
+HW1-1
+--------------------------------------------------------------------
 
+answer 42
 
 HW1-2
 --------------------------------------------------------------------
