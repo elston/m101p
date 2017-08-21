@@ -27,7 +27,7 @@ services:
     networks:
       - netmain
     command:
-      - --auth
+      # - --auth
       - --bind_ip_all
       - -f
       - /etc/mongod.conf
@@ -69,3 +69,18 @@ services:
       - ../../images/weber/runserv.sh:/usr/local/bin/runserv.sh
     # ................
     command: /bin/bash
+
+
+  validator:
+    image: ${PROJECT}_validator
+    tty: true    
+    networks:
+      - netmain
+    environment:
+      - PROJECT=validator
+      - WORKON_HOME=/validator/.env
+      - PYTHONPATH=/validator      
+    volumes:
+      - ../../images/validator/src:/validator
+    # ................
+    command: /bin/bash    

@@ -21,3 +21,10 @@ services:
       dockerfile: dev.dockerfile
     network_mode: "host" 
 
+
+  validator:
+    build:
+      context: ../../images/validator
+      dockerfile: dev.dockerfile
+    network_mode: "host"     
+

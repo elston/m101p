@@ -42,3 +42,17 @@ services:
       - ../../images/weber/requirements/dev.txt:/tmp/requirements.txt
     # ..................................      
     command: /usr/local/bin/bootstrap.sh    
+
+
+  validator:
+    image: ${PROJECT}_validator
+    network_mode: "host" 
+    environment:
+      - PROJECT=validator
+      - WORKON_HOME=/validator/.env
+    volumes:
+      - ../../images/validator/src:/validator
+      - ../../images/validator/bootstrap.sh:/usr/local/bin/bootstrap.sh
+      - ../../images/validator/requirements/dev.txt:/tmp/requirements.txt
+    # ..................................      
+    command: /usr/local/bin/bootstrap.sh        

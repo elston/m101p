@@ -29,18 +29,25 @@ pull_mongo:
 	@echo "---> pull mongo:3.5"
 	@docker pull mongo:3.5
 
-# target: pull_python - pull python images
-.PHONY: pull_python
-pull_python:
+# target: pull_python3 - pull python3 images
+.PHONY: pull_python3
+pull_python3:
 	@echo "---> pull python:3.6-slim"
 	@docker pull python:3.6-slim
+
+
+# target: pull_python2 - pull python2 images
+.PHONY: pull_python2
+pull_python2:
+	@echo "---> pull python:2.7-slim"
+	@docker pull python:2.7-slim
 
 
 # target: pull_all - pull base images
 .PHONY: pull_all
 pull_all:
 	@make pull_mongo
-	@make pull_python
+	@make pull_python3
 
 
 # target:
@@ -66,11 +73,23 @@ build_weber:
 		build \
 		weber
 
+
+# target: build_validator - build validator image
+.PHONY: build_validator
+build_validator:
+	@echo "---> build validator"	
+	@docker-compose \
+		-p $(PROJECT) \
+		-f build.yml \
+		build \
+		validator		
+
 # target: build_all - build all images
 .PHONY: build_all
 build_all:
 	@make build_storage
-	@make build_weber	
+	@make build_weber
+	@make build_validator	
 
 
 # target:
@@ -100,11 +119,24 @@ bootstrap_weber:
 		weber
 
 
+# target: bootstrap_validator - bootstrap validator contaner
+.PHONY: bootstrap_validator
+bootstrap_validator:
+	@echo "---> bootstrap validator"	
+	@docker-compose \
+		-p $(PROJECT) \
+		-f bootstrap.yml \
+		run \
+		--rm \
+		validator		
+
+
 # target: bootstrap_all - bootstrap all images
 .PHONY: bootstrap_all
 bootstrap_all:
 	@make bootstrap_storage
 	@make bootstrap_weber
+	@make bootstrap_validator	
 
 # target:
 # target: ===== shell ======= - ============================
@@ -134,6 +166,17 @@ shell_weber:
 		weber
 
 
+# target: shell_validator - shell validator container
+.PHONY: shell_validator
+shell_validator:
+	@docker-compose \
+		-p $(PROJECT) \
+		-f run.yml \
+		-f shell.yml \
+		run \
+		--rm \
+		--name $(PROJECT)_validator_1 \
+		validator
 
 # target:
 # target: ===== misc ======== - ============================

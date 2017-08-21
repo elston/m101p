@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+
+  validator:
+      external_links:
+        - ${PROJECT}_weber_1:weber
+
+
+   
