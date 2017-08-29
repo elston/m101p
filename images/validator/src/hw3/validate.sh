@@ -1,0 +1,3 @@
+#!/bin/bash
+# ...
+python validate.py -p weber:8000 -m mongodb://adminmaster:passmaster@storage/admin

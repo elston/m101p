@@ -145,3 +145,24 @@ HW2-5
 ```
 db.movieDetails.find({"countries.1":"Sweden"}).count();
 ```
+
+HW3-1
+--------------------------------------------------------------------
+
+```
+mongoimport  --host storage -u adminmaster -p passmaster --authenticationDatabase admin --drop --db school --collection students students.json
+```
+
+answer: 13
+
+
+HW3-2
+--------------------------------------------------------------------
+
+answer: 89jklfsjrlk209jfks2j2ek
+
+
+HW3-3
+--------------------------------------------------------------------
+
+answer: jk1310vn2lkv0j2kf0jkfs
