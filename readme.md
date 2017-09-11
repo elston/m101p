@@ -9,10 +9,12 @@ Technology
 - python 3.6
 - mongodb 3.5
 
+
 Another
 -------
 - https://visionfortech.blogspot.ru/2017/01/solution-week-1-introduction-m101p-MongoDB-for-Developer.html (JANUARY 22, 2017)
 - https://da8y01.github.io/gh-blog/2016/12/11/m101p-mongodb-for-developers.html    
+
 
 Getting Started with Docker and Docker Compose for Local Development
 --------------------------------------------------------------------
